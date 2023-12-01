@@ -16,7 +16,7 @@ import static pl.edu.agh.productivitypal.config.SecurityConstant.AUTHORIZATION_H
 public class EmailVerificationController {
     private final EmailVerificationService emailVerificationService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping("/send")
     public ResponseEntity<String> send(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt) throws MessagingException {
         emailVerificationService.sendVerificationEmail(jwt);
@@ -24,7 +24,7 @@ public class EmailVerificationController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping("/verify")
     public ResponseEntity<String> verify(@RequestBody EmailVerificationDto emailVerificationDto) {
         boolean isVerified = emailVerificationService.verifyCode(emailVerificationDto);

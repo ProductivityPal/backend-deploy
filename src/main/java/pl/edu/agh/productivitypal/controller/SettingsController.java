@@ -21,7 +21,7 @@ public class SettingsController {
         this.settingsService = settingsService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping("/login")
     public ResponseEntity<String> changeLoginData(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @RequestBody SettingsLoginDto settingsLoginDto){
         log.info("Received request to change login data. Data {}", settingsLoginDto);
@@ -29,14 +29,14 @@ public class SettingsController {
         return ResponseEntity.ok("Login data was changed successfully.");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @DeleteMapping("/deleteAccount")
     public ResponseEntity<String> deleteAccount(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt){
         settingsService.deleteAccount(jwt);
         return ResponseEntity.ok("Account was deleted successfully.");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping("/category")
     public ResponseEntity<String> changeCategories(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @RequestBody CategoryDto categoryDto){
         settingsService.changeCategories(jwt, categoryDto);

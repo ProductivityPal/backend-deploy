@@ -19,7 +19,7 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PutMapping("/energyLevel/{energyLevel}")
     public ResponseEntity<String> updateEnergyLevel(@PathVariable EnergyLevel energyLevel, @RequestHeader(AUTHORIZATION_HEADER) Jwt jwt) {
         appUserService.updateEnergyLevel(jwt, energyLevel);

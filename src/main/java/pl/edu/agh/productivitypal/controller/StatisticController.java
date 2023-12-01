@@ -22,7 +22,7 @@ public class StatisticController {
         this.statisticService = statisticService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping
     public ResponseEntity<ReportInfoDto> getInfoReport(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt,
                                                        @RequestParam("start_date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
@@ -31,7 +31,7 @@ public class StatisticController {
         return ResponseEntity.ok(statisticService.getInfoReport(jwt, startDate, endDate));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/energyLevel")
     public ResponseEntity<List<EnergyLevelInfo>> getEnergyLevelReport(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt){
         return ResponseEntity.ok(statisticService.getEnergyLevelReport(jwt));

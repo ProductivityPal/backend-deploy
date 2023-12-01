@@ -21,59 +21,59 @@ public class CalendarController {
         this.calendarService = calendarService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/all")
     public ResponseEntity<List<Calendar>> getCalendars() {
         return ResponseEntity.ok(calendarService.getAllCalendars());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping
     public ResponseEntity<List<Calendar>> getCalendarsOfCurrentUser(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt) {
         return ResponseEntity.ok(calendarService.getAllCalendarsOfCurrentUser(jwt));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/tasks")
     public ResponseEntity<List<CalendarTask>> getCalendarTasks(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt) {
         return ResponseEntity.ok(calendarService.getCalendarTasks(jwt));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/task/{taskId}")
     public ResponseEntity<CalendarTask> getCalendarTask(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @PathVariable Integer taskId) {
         return ResponseEntity.ok(calendarService.getCalendarTask(jwt, taskId));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping
     public ResponseEntity<String> addCalendar(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @RequestBody Calendar calendar) {
         calendarService.addCalendar(jwt, calendar);
         return ResponseEntity.ok("Calendar " + calendar.getName() + " was added");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping("/task/{id}")
     public ResponseEntity<String> addTaskToCalendar(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @RequestBody CalendarTask calendarTask, @PathVariable Integer id) {
         calendarService.addTaskToCalendar(jwt, calendarTask, id);
         return ResponseEntity.ok("Task " + calendarTask.getTask().getName() + " was added to calendar " +  calendarTask.getCalendar().getName());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PutMapping("/{id}")
     public ResponseEntity<String> updateCalendar(@RequestBody Calendar calendar, @PathVariable Integer id) {
         calendarService.updateCalendar(calendar, id);
         return ResponseEntity.ok("Calendar " + calendar.getName() + " information was updated");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PutMapping("/task/{taskId}")
     public ResponseEntity<String> updateCalendarTask(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @RequestBody CalendarTask calendarTask, @PathVariable Integer taskId) {
         calendarService.updateCalendarTask(jwt, calendarTask, taskId);
         return ResponseEntity.ok("Calendar task " + calendarTask.getTask().getName() + " information was updated");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @DeleteMapping("/task/{calendarTaskId}")
     public ResponseEntity<String> deleteCalendarTask(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @PathVariable Integer calendarTaskId) {
         calendarService.deleteCalendarTask(jwt, calendarTaskId);

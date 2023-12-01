@@ -23,13 +23,13 @@ public class TaskController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/all")
     public ResponseEntity<List<Task>> getTasks() {
         return ResponseEntity.ok(taskService.getAllTasks());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000", methods = RequestMethod.GET, allowedHeaders = "Authorization")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com", methods = RequestMethod.GET, allowedHeaders = "Authorization")
     @GetMapping
     public ResponseEntity<List<Task>> getTasksOfCurrentUser(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt,
                                             @RequestParam(required = false, defaultValue = "asc") String order,
@@ -39,82 +39,82 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getAllTasksOfCurrentUser(jwt, order, sortBy, offset, pageSize));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/algosort")
     public ResponseEntity<List<Task>> getTasksSortedByAlgosort(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt) {
         return ResponseEntity.ok(taskService.getTasksSortedByAlgosort(jwt));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping
     public ResponseEntity<Integer> addTask(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @RequestBody Task task) {
         return ResponseEntity.ok(taskService.addTask(jwt, task));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Integer id) {
         return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) {
         return ResponseEntity.ok(taskService.updateTask(id, task));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping("/subtask")
     public ResponseEntity<Integer> addSubtask(@RequestHeader(AUTHORIZATION_HEADER) Jwt jwt, @RequestBody Task task) {
         return ResponseEntity.ok(taskService.addSubtask(jwt, task));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTask(@PathVariable Integer id) {
         taskService.deleteTask(id);
         return ResponseEntity.ok("Task " + id + " was deleted");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @DeleteMapping("/{id}/subtask")
     public ResponseEntity<String> deleteTaskAndAllSubtask(@PathVariable Integer id) {
         taskService.deleteTaskAndAllSubtask(id);
         return ResponseEntity.ok("Task " + id + " and all its subtasks were deleted");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @DeleteMapping("/{taskId}/subtask/{subtaskId}")
     public ResponseEntity<String> deleteSubTask(@PathVariable Integer taskId, @PathVariable Integer subtaskId){
         taskService.deleteSubtask(taskId, subtaskId);
         return ResponseEntity.ok("Subtask " + subtaskId + " of task " + taskId + " was deleted");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/{id}/subtask")
     public ResponseEntity<List<Task>> getSubtasks(@PathVariable Integer id, @RequestHeader(AUTHORIZATION_HEADER) Jwt jwt) {
         return ResponseEntity.ok(taskService.getSubtasks(jwt, id));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/{taskId}/subtask/{subtaskId}")
     public ResponseEntity<Task> getSubtask(@PathVariable Integer taskId, @PathVariable Integer subtaskId){
         return ResponseEntity.ok(taskService.getSubtask(taskId, subtaskId));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PutMapping("/{taskId}/subtask/{subtaskId}")
     public ResponseEntity<Task> updateSubtask(@PathVariable Integer taskId, @PathVariable Integer subtaskId, @RequestBody Task task){
         return ResponseEntity.ok(taskService.updateSubtask(taskId, subtaskId, task));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @GetMapping("/criteria")
     public ResponseEntity<List<Task>> getTasksByCriteria(@RequestBody TaskRequest taskRequest){
         return ResponseEntity.ok(taskService.getTasksByCriteria(taskRequest));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://productivitypal-frontend.onrender.com")
     @PostMapping("/pomodoro")
     public ResponseEntity<String> addCompletionTimePomodoro(@RequestBody PomodoroRequest pomodoroRequest){
         taskService.addCompletionTimePomodoro(pomodoroRequest.getTaskId(), pomodoroRequest.getCompletionTime());
